@@ -9,7 +9,7 @@ router.post("/kayit", async (req, res) => {
     "INSERT INTO users (adSoyad, kullaniciAdi, sifre) VALUES (?, ?, ?)";
 
   try {
-    const [result] = await db.promise().query(sql, [name, userName, password]);
+    const [result] = await db.query(sql, [name, userName, password]);
     res.status(200).json({ message: "Mesaj başarıyla alındı!" });
   } catch (err) {
     console.error("Kayıt hatası:", err);
@@ -24,7 +24,7 @@ router.post("/giris", async (req, res) => {
     "SELECT id, kullaniciAdi, sifre FROM users WHERE kullaniciAdi = ?";
 
   try {
-    const [result] = await db.promise().query(sql, [userName]);
+    const [result] = await db.query(sql, [userName]);
     if (result.length === 0) {
       return res.status(401).json({ error: "Kullanıcı bulunamadı." });
     }
