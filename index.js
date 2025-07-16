@@ -2,13 +2,13 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const contactRoutes = require("./routes/contact");
 
 const app = express();
 const PORT = 3001;
 
 const authRoutes = require("./routes/auth");
 const yorumRoutes = require("./routes/yorumlar");
+const contactRoutes = require("./routes/contact");
 
 // app.use(
 //   cors({
@@ -21,7 +21,6 @@ const yorumRoutes = require("./routes/yorumlar");
 app.use(cors());
 app.use(express.json());
 
-// Route'ları kullan
 app.use("/api", authRoutes);
 app.use("/api", yorumRoutes);
 app.use("/api", contactRoutes);

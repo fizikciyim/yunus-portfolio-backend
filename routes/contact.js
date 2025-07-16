@@ -3,7 +3,6 @@ const axios = require("axios");
 const router = express.Router();
 require("dotenv").config();
 
-// Ortama özel bilgileri buradan çekiyoruz
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 

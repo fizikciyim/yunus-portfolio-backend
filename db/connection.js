@@ -1,5 +1,5 @@
 const mysql = require("mysql2");
-require("dotenv").config(); // .env dosyasını projeye dahil eder
+require("dotenv").config();
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
@@ -11,4 +11,4 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
-module.exports = pool.promise(); // async/await ile kullanabilmen için
+module.exports = pool.promise();
