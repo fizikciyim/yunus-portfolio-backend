@@ -1,18 +1,14 @@
 const mysql = require("mysql2");
+require("dotenv").config(); // .env dosyasını projeye dahil eder
 
-const db = mysql.createConnection({
-  host: "127.0.0.1", // localhost yerine bunu kullan
-  user: "root",
-  password: "YeniParolanız123!",
-  database: "backend",
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error("Veritabanına bağlanılamadı:", err);
-  } else {
-    console.log("MySQL bağlantısı başarılı!");
-  }
-});
-
-module.exports = db;
+module.exports = pool.promise(); // async/await ile kullanabilmen için
