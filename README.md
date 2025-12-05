@@ -1,94 +1,76 @@
 # Kişisel Portföy Web Sitesi (Backend Deposu)
 
-Merhaba! Bu proje, yazılım geliştirme alanındaki yetkinliklerimi ve projelerimi sergilemek amacıyla oluşturduğum **kişisel portföy sitemdir**. Full-stack geliştirme yeteneklerimi göstermek için hem frontend hem backend taraflarını sıfırdan oluşturdum.
+Merhaba! Bu proje, yazılım geliştirme alanındaki yetkinliklerimi ve projelerimi sergilemek amacıyla oluşturduğum **kişisel portföy sitemin backend deposudur**.  
+Full-stack geliştirme yeteneklerimi göstermek için hem frontend hem de backend taraflarını sıfırdan oluşturdum. Backend altyapısı daha sonra **AWS Serverless mimarisine** taşınmıştır.
 
-🔗 [Portföy Sitemi Buradan Ziyaret Edin](https://yunuskarasen.com)
+🔗 **Canlı Portföy Sitem:** https://yunuskarasen.com
+
+---
 
 ## 💡 Özellikler
 
-- Mobil uyumlu tasarım
+- Mobil uyumlu modern tasarım
 - Hakkımda sayfası
 - Proje tanıtım bölümü
-- İletişim formu (API destekli)
+- API destekli iletişim formu
 - Kullanıcı kayıt ve giriş sistemi
-- Yorumlar bölümü (Kayıtlı kullanıcılar yorum bırakabilir)
+- Yorum ekleme özelliği (sadece kayıtlı kullanıcılar)
 
-## Kullanılan Teknolojiler
+---
+
+## 🛠️ Kullanılan Teknolojiler
 
 ### ✅ Frontend
 
 - HTML5, CSS3, JavaScript (ES6+)
 - React.js
-- Bootstrap 5
 - React Router
+- Bootstrap 5
 
-### ✅ Backend
+### ✅ Backend (AWS Serverless)
 
-- Node.js
-- Express.js
-- MySQL
-- RESTful API
+Backend artık klasik Express sunucusunda değil, tamamen AWS servisleri üzerinde çalışmaktadır:
+
+- **AWS Lambda** – Tüm API fonksiyonları
+- **API Gateway** – REST API yönetimi
+- **AWS RDS (MySQL)** – Veritabanı
+- **AWS VPC & Security Groups** – Ağ katmanı ve güvenlik
+- **CloudWatch** – Loglama ve hata takibi
+
+Bu yapı sayesinde sunucu yönetimi ortadan kalkmış, otomatik ölçeklenebilir ve maliyet-etkin bir mimariye geçilmiştir.
+
+---
 
 ## ⚙️ Kurulum Talimatları
 
-Bu proje iki ayrı repository'den oluşur:
+Bu proje iki ayrı repository’den oluşmaktadır:
 
-- 🎨 **Frontend (React):** [https://github.com/fizikciyim/yunus-portfolio](https://github.com/fizikciyim/yunus-portfolio)
-- 🛠️ **Backend (Node.js + Express):** [https://github.com/fizikciyim/yunus-portfolio-backend](https://github.com/fizikciyim/yunus-portfolio-backend)
+- 🎨 **Frontend (React):**  
+  https://github.com/fizikciyim/yunus-portfolio
 
-### 🔽 1. Backend Kurulumu
+- 🛠️ **Backend (AWS Lambda kodları):**  
+  https://github.com/fizikciyim/yunus-portfolio-backend
 
-1. Backend reposunu klonlayın:
+---
 
-```bash
-git clone https://github.com/fizikciyim/yunus-portfolio-backend.git
-cd yunus-portfolio-backend
-```
+## 🔽 Backend Kurulumu Artık Gerekmez
 
-2. Bağımlılıkları yükleyin:
+Backend tamamen AWS üzerinde çalıştığı için:
 
-```bash
-npm install
-```
+- Sunucu kurmanıza gerek yoktur
+- `npm install`, `.env`, `npm run dev` gibi işlemler kullanılmaz
+- Tüm fonksiyonlar AWS Lambda’da çalışır
+- Frontend doğrudan **API Gateway endpointlerine** bağlanır
 
-3. .env dosyasını oluşturun ve doldurun.
+Bu repo yalnızca Lambda fonksiyonlarının kaynak kodlarını içerir.
 
-```
-TELEGRAM_BOT_TOKEN=tokeniniz
-TELEGRAM_CHAT_ID=chat_idniz
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=senin_sifren
-DB_NAME=veritabani_isminiz
-```
+---
 
-4. Backendi başlatın:
-
-```
-npm run dev
-```
-
-### 🔽 2. Frontend Kurulumu
+## 🔽 Frontend’i Lokal Olarak Çalıştırmak İsterseniz
 
 ```bash
 git clone https://github.com/fizikciyim/yunus-portfolio.git
 cd yunus-portfolio
-```
-
-2. Bağımlılıkları yükleyin:
-
-```bash
 npm install
-```
-
-3. Frontendi başlatın:
-
-```
 npm run dev
 ```
-
-### ✅ Kurulum Sonrası
-
-- http://localhost:5173 adresinden frontend arayüzüne erişebilirsiniz.
-- http://localhost:3001/api adresi backend API’nizdir.
-- Giriş-kayıt işlemleri, yorum gönderme ve diğer API talepleri bu altyapı üzerinden gerçekleşir.
